@@ -19,6 +19,8 @@ public class Crususr implements CRUD{
     ResultSet rs;
     Connection con;
     conexion conex= new conexion();
+    int res;
+    String msj;
     
     @Override
     public List listar() {
@@ -44,27 +46,45 @@ public class Crususr implements CRUD{
         }catch (Exception e){
         }
         return datos;
-    }
+    }  
 
     @Override
-    public User listarCodigo(int codigo) {
+    public User listarCODIGO(int Codigo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public String add(String medicamento, String dosis, double precio_unitario, int cantidad_existencia, String laboratorio_farmaceutico, String vencimiento, String presentacion) {
+    public String add(String Medic, String Dos, double Precio, int Cantidad, String Lab, String Ven, String Pres) {
+        String sql="insert into Medicamentos(Medicamento, Dosis, Precio_unitario, Cantidad_existencia, Laboratorio_farmaceutico, Vencimiento(?,?,?,?,?,?)";
+        try {
+            con = conex.getConnection();
+            ps=con.prepareStatement(sql);
+            ps.setString(1, Medic);
+            ps.setString(2, Dos);
+            ps.setDouble(3, Precio);
+            ps.setInt(4, Cantidad);
+            ps.setString(5, Lab);
+            ps.setString(6, Ven);
+            ps.setString(7, Pres);
+            res=ps.executeUpdate();
+            if(res==1){
+                msj="Medicamento agregado";
+            }else{
+                msj="Error";
+            }
+            
+        }catch (Exception e){
+        }
+        return msj;
+    }
+
+    @Override
+    public String edit(int Codigo, String Medic, String Dos, double Precio, int Cantidad, String Lab, String Ven, String Pres) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public String edit(int codigo, String medicamento, String dosis, double precio_unitario, int cantidad_existencia, String laboratorio_farmaceutico, String vencimiento, String presentacion) {
+    public User delete(int Codigo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    @Override
-    public User delete(int codigo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    
 }

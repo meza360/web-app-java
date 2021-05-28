@@ -18,6 +18,9 @@ public class User {
      String Laboratorio_farmaceutico;
      String Vencimiento;
      String Presentacion;
+     
+     public User(){
+     }
     
     public User(int Codigo, String Medicamento,String Dosis, String Precio_unitario, int Cantidad_existencia,String Laboratorio_farmaceutico, String Vencimiento, String Presentacion ){
         this.Codigo = Codigo;
@@ -28,10 +31,6 @@ public class User {
         this.Laboratorio_farmaceutico = Laboratorio_farmaceutico;
         this.Vencimiento = Vencimiento;
         this.Presentacion = Presentacion;
-    }
-
-    public User() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
