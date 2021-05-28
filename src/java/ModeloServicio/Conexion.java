@@ -1,5 +1,5 @@
 
-package modelo;
+package ModeloServicio;
 
 //import Datos.Usuario;
 import java.sql.Connection;
@@ -7,17 +7,17 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 
-public class conexion {
+public class Conexion {
     // Connect to your database.
     // Replace server name, username, and password with your credentials
     
     String url,user,pass;
     Connection con;
     
-    public conexion(){}
+    public Conexion(){}
     
     
-    public conexion(String user, String password){
+    public Conexion(String user, String password){
         this.user = user;
         this.pass = password;
         url = "jdbc:sqlserver://localhost:1433;database=Farmacia;";
