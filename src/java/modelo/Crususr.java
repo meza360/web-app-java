@@ -18,13 +18,14 @@ public class Crususr implements CRUD{
     PreparedStatement ps;
     ResultSet rs;
     Connection con;
-    conexion conex= new conexion();
+    conexion conex;
     
     @Override
     public List listar() {
         List <User>  datos=new ArrayList<>();
         String sql= "SELECT * FROM Medicamentos";
         try {
+            conex = new conexion("progra","programacion3");
             con = conex.getConnection();
             ps=con.prepareStatement(sql);
             rs=ps.executeQuery();
@@ -33,15 +34,18 @@ public class Crususr implements CRUD{
                 u.setCodigo(rs.getInt("Codigo"));
                 u.setMedicamento(rs.getString("Medicamento"));
                 u.setDosis(rs.getString("Dosis"));
-                u.setPrecio_unitario(rs.getString("Precio_unitario"));
+                u.setPrecio_unitario(rs.getDouble("Precio_unitario"));
                 u.setCantidad_existencia(rs.getInt("Cantidad_existencia"));
                 u.setLaboratorio_farmaceutico(rs.getString("Laboratorio_farmaceutico"));
                 u.setVencimiento(rs.getString("Vencimiento"));
                 u.setPresentacion(rs.getString("Presentacion"));
+                
                 datos.add(u);
             }
             
-        }catch (Exception e){
+        }catch (Exception error){
+            System.out.println("Error en la obtencion de datos: " + error);
+            error.printStackTrace();
         }
         return datos;
     }

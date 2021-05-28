@@ -10,24 +10,30 @@ import java.sql.SQLException;
 public class conexion {
     // Connect to your database.
     // Replace server name, username, and password with your credentials
-    public static void main(String[] args) {
-        String connectionUrl =
-                "jdbc:sqlserver://DESKTOP-76OVA2V\\SQLEXPRESS:1433;"
-                        + "database=Farmacia;"
-                        + "user=sa;"
-                        + "password=123;";
-                        
-
-        try (Connection connection = DriverManager.getConnection(connectionUrl);) {
-            // Code here.
+    
+    String url,user,pass;
+    Connection con;
+    
+    public conexion(){}
+    
+    
+    public conexion(String user, String password){
+        this.user = user;
+        this.pass = password;
+        url = "jdbc:sqlserver://localhost:1433;database=Farmacia;";
+        try {
+             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+             con = DriverManager.getConnection(url, user, pass);
+            
+        } catch (Exception error) {
+            System.out.println("Error en la conexion con la base de datos: " + error);
+            error.printStackTrace();
         }
-        // Handle any errors that may have occurred.
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
+       
     }
-
-    Connection getConnection() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    public Connection getConnection(){
+       return con;
     }
 }
+    

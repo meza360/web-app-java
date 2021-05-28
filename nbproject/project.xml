@@ -10,7 +10,7 @@
             <minimum-ant-version>1.6.5</minimum-ant-version>
             <web-module-libraries>
                 <library dirs="200">
-                    <file>${file.reference.sqljdbc41.jar}</file>
+                    <file>${file.reference.mssql-jdbc-9.2.1.jre8.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>
