@@ -1,7 +1,7 @@
 
 package modelo;
 
-import Datos.Usuario;
+
 import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,17 +22,22 @@ public class Crususr implements CRUD{
     
     @Override
     public List listar() {
-        List <Usuario>  datos=new ArrayList<>();
-        String sql= "select * from Codigo";
+        List <User>  datos=new ArrayList<>();
+        String sql= "SELECT * FROM Medicamentos";
         try {
             con = conex.getConnection();
             ps=con.prepareStatement(sql);
             rs=ps.executeQuery();
             while(rs.next()){
-                Usuario u=new Usuario();
+                User u=new User();
                 u.setCodigo(rs.getInt("Codigo"));
-                u.setFname(rs.getString("fname"));
-                u.setLname(rs.getString("lname"));
+                u.setMedicamento(rs.getString("Medicamento"));
+                u.setDosis(rs.getString("Dosis"));
+                u.setPrecio_unitario(rs.getString("Precio_unitario"));
+                u.setCantidad_existencia(rs.getInt("Cantidad_existencia"));
+                u.setLaboratorio_farmaceutico(rs.getString("Laboratorio_farmaceutico"));
+                u.setVencimiento(rs.getString("Vencimiento"));
+                u.setPresentacion(rs.getString("Presentacion"));
                 datos.add(u);
             }
             
@@ -42,7 +47,7 @@ public class Crususr implements CRUD{
     }
 
     @Override
-    public Usuario listarCodigo(int codigo) {
+    public User listarCodigo(int codigo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -57,7 +62,7 @@ public class Crususr implements CRUD{
     }
 
     @Override
-    public Usuario delete(int codigo) {
+    public User delete(int codigo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
