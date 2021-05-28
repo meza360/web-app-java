@@ -1,3 +1,4 @@
+
 package modelo;
 
 
@@ -49,7 +50,11 @@ public class Crususr implements CRUD{
         return datos;
     }
 
-    
+    @Override
+    public User listarCodigo(int codigo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     @Override
     public String add(String medicamento, String dosis, double precio_unitario, int cantidad_existencia, String laboratorio_farmaceutico, String vencimiento, String presentacion) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -62,11 +67,6 @@ public class Crususr implements CRUD{
 
     @Override
     public User delete(int codigo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public User listarCODIGO(int Codigo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
