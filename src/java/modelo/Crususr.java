@@ -5,6 +5,7 @@ package modelo;
 import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,7 +80,7 @@ public class Crususr implements CRUD{
                 msj="Error";
             }
             
-        }catch (Exception e){
+        }catch (SQLException e){
         }
         return msj;
     }
