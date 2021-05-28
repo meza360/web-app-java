@@ -2,6 +2,7 @@
 package ModeloServicio;
 
 
+import ModeloServicio.CRUD;
 import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,6 +28,7 @@ public class CRUDMedicamentos implements CRUD{
     
     @Override
     public List listar() {
+        
         List <Medicamento>  datos=new ArrayList<>();
         String sql= "SELECT * FROM Medicamentos";
         try {

@@ -3,14 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package WS;
+package ModeloServicio;
 
 import java.util.List;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
-import ModeloServicio.CRUDMedicamentos;
-import ModeloServicio.Medicamento;
 
 /**
  *
@@ -22,7 +20,7 @@ public class Servicios {
     CRUDMedicamentos dao = new CRUDMedicamentos(); 
     
     @WebMethod(operationName = "listarMedicamentos")
-    public List<Medicamento> listar() {
+    public List<Medicamento> listarMedicamentos() {
         List medicamentos = dao.listar();
         return medicamentos;
     }
