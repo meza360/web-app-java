@@ -19,6 +19,10 @@ public class Crususr implements CRUD{
     ResultSet rs;
     Connection con;
     conexion conex;
+    int res;
+    String msj;
+    
+    
     
     @Override
     public List listar() {
@@ -56,8 +60,28 @@ public class Crususr implements CRUD{
     }
 
     @Override
-    public String add(String medicamento, String dosis, double precio_unitario, int cantidad_existencia, String laboratorio_farmaceutico, String vencimiento, String presentacion) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String add(String Medic, String Dos, double Precio, int Cantidad, String Lab, String Ven, String Pres) {
+        String sql="insert into Medicamentos(Medicamento, Dosis, Precio_unitario, Cantidad_existencia, Laboratorio_farmaceutico, Vencimiento(?,?,?,?,?,?)";
+        try {
+            con = conex.getConnection();
+            ps=con.prepareStatement(sql);
+            ps.setString(1, Medic);
+            ps.setString(2, Dos);
+            ps.setDouble(3, Precio);
+            ps.setInt(4, Cantidad);
+            ps.setString(5, Lab);
+            ps.setString(6, Ven);
+            ps.setString(7, Pres);
+            res=ps.executeUpdate();
+            if(res==1){
+                msj="Medicamento agregado";
+            }else{
+                msj="Error";
+            }
+            
+        }catch (Exception e){
+        }
+        return msj;
     }
 
     @Override
