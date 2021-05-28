@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package modelo;
 
 /**
@@ -13,16 +8,13 @@ public class User {
      int Codigo;
      String Medicamento;
      String Dosis;
-     String Precio_unitario;
+     double Precio_unitario;
      int Cantidad_existencia;
      String Laboratorio_farmaceutico;
      String Vencimiento;
      String Presentacion;
-     
-     public User(){
-     }
     
-    public User(int Codigo, String Medicamento,String Dosis, String Precio_unitario, int Cantidad_existencia,String Laboratorio_farmaceutico, String Vencimiento, String Presentacion ){
+    public User(int Codigo, String Medicamento,String Dosis, double Precio_unitario, int Cantidad_existencia,String Laboratorio_farmaceutico, String Vencimiento, String Presentacion ){
         this.Codigo = Codigo;
         this.Medicamento = Medicamento;
         this.Dosis = Dosis;
@@ -31,6 +23,10 @@ public class User {
         this.Laboratorio_farmaceutico = Laboratorio_farmaceutico;
         this.Vencimiento = Vencimiento;
         this.Presentacion = Presentacion;
+    }
+
+    public User() {
+        
     }
 
     /**
@@ -78,14 +74,14 @@ public class User {
     /**
      * @return the precio_unitario
      */
-    public String getPrecio_unitario() {
+    public double getPrecio_unitario() {
         return Precio_unitario;
     }
 
     /**
      * @param Precio_unitario the precio_unitario to set
      */
-    public void setPrecio_unitario(String Precio_unitario) {
+    public void setPrecio_unitario(double Precio_unitario) {
         this.Precio_unitario = Precio_unitario;
     }
 
