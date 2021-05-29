@@ -2,7 +2,6 @@
 package ModeloServicio;
 
 
-import ModeloServicio.CRUD;
 import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -48,10 +47,11 @@ public class CRUDMedicamentos implements CRUD{
                 u.setVencimiento(rs.getString(7));
                 u.setPresentacion(rs.getString(8));
                 
+                
                 datos.add(u);
             }
             
-        }catch (Exception error){
+        }catch (SQLException error){
             System.out.println("Error en la obtencion de datos: " + error);
             error.printStackTrace();
         }
@@ -59,23 +59,47 @@ public class CRUDMedicamentos implements CRUD{
     }
 
     @Override
-    public Medicamento listarCodigo(int codigo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Medicamento listarCodigo(int Codigo) {
+        String sql="select *from Medicamentos where Codigo="+Codigo;
+        Medicamento medicamento = new Medicamento();
+        try {
+            conex = new Conexion("progra","programacion3");
+            con = conex.getConnection();
+            ps=con.prepareStatement(sql);
+            rs=ps.executeQuery();
+            while(rs.next()){
+                medicamento.setCodigo(rs.getInt(1));
+                medicamento.setMedicamento(rs.getString(2));
+                medicamento.setDosis(rs.getString(3));
+                medicamento.setPrecio_unitario(rs.getDouble(4));
+                medicamento.setCantidad_existencia(rs.getInt(5));
+                medicamento.setLaboratorio_farmaceutico(rs.getString(6));
+                medicamento.setVencimiento(rs.getString(7));
+                medicamento.setPresentacion(rs.getString(8));
+                
+                
+                
+            }
+            
+        }catch (SQLException error){   
+        }
+        return medicamento;
     }
 
     @Override
-    public String add(String Medic, String Dos, double Precio, int Cantidad, String Lab, String Ven, String Pres) {
-        String sql="insert into Medicamentos(Medicamento, Dosis, Precio_unitario, Cantidad_existencia, Laboratorio_farmaceutico, Vencimiento(?,?,?,?,?,?)";
+    public String add(String Medicamento, String Dosis, double Precio_unitario, int Cantidad_existencia, String Laboratorio_farmaceutico, String Vencimiento, String Presentacion) {
+        String sql="insert into Medicamentos(Medicamento, Dosis, Precio_unitario, Cantidad_existencia, Laboratorio_farmaceutico, Vencimiento, Presentacion) values (?,?,?,?,?,?,?)";
         try {
+            conex = new Conexion("progra","programacion3");
             con = conex.getConnection();
             ps=con.prepareStatement(sql);
-            ps.setString(1, Medic);
-            ps.setString(2, Dos);
-            ps.setDouble(3, Precio);
-            ps.setInt(4, Cantidad);
-            ps.setString(5, Lab);
-            ps.setString(6, Ven);
-            ps.setString(7, Pres);
+            ps.setString(1, Medicamento);
+            ps.setString(2, Dosis);
+            ps.setDouble(3, Precio_unitario);
+            ps.setInt(4, Cantidad_existencia);
+            ps.setString(5, Laboratorio_farmaceutico);
+            ps.setString(6, Vencimiento);
+            ps.setString(7, Presentacion);
             res=ps.executeUpdate();
             if(res==1){
                 msj="Medicamento agregado";
@@ -89,12 +113,38 @@ public class CRUDMedicamentos implements CRUD{
     }
 
     @Override
-    public String edit(int codigo, String medicamento, String dosis, double precio_unitario, int cantidad_existencia, String laboratorio_farmaceutico, String vencimiento, String presentacion) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String edit(int Codigo, String Medicamento, String Dosis, double Precio_unitario, int Cantidad_existencia, String Laboratorio_farmaceutico, String Vencimiento, String Presentacion) {
+        String sql="update Medicamentos set Medicamento=?, Dosis=?,Precio_unitario=?, Cantidad_existencia=?,Laboratorio_farmaceutico=?,Vencimiento=?,Presentacion=? where Codigo= "+Codigo;
+        try {
+            conex = new Conexion("progra","programacion3");
+            con = conex.getConnection();
+            ps=con.prepareStatement(sql);
+            ps.setString(1, Medicamento);
+            ps.setString(2, Dosis);
+            ps.setDouble(3, Precio_unitario);
+            ps.setInt(4, Cantidad_existencia);
+            ps.setString(5, Laboratorio_farmaceutico);
+            ps.setString(6, Vencimiento);
+            ps.setString(7, Presentacion);
+            res=ps.executeUpdate();
+            if(res==1){
+                msj="Medicamento actualizado";
+            }else{
+                msj="Error";
+            }
+            
+        }catch (SQLException e){
+        }
+        return msj;
     }
 
     @Override
     public Medicamento delete(int codigo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Medicamento listarLaboratorios(String Laboratorio_farmaceutico) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

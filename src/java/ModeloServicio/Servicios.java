@@ -27,8 +27,28 @@ public class Servicios {
 
     
     @WebMethod(operationName = "agregar")
-    public String agregar(@WebParam(name = "Medic") String Medic, @WebParam(name = "Dos") String Dos, @WebParam(name = "Precio") double Precio, @WebParam(name = "Cantidad") int Cantidad, @WebParam(name = "Lab") String Lab, @WebParam(name = "Ven") String Ven, @WebParam(name = "Pres") String Pres) {
-        String datos = dao.add(Medic, Dos, Precio, Cantidad, Lab, Ven, Pres);
+    public String agregar(@WebParam(name = "Medicamento") String Medicamento, @WebParam(name = "Dosis") String Dosis, @WebParam(name = "Precio_unitario") double Precio_unitario, @WebParam(name = "Cantidad_existencia") int Cantidad_existencia, @WebParam(name = "Laboratorio_farmaceutico") String Laboratorio_farmaceutico, @WebParam(name = "Vencimiento") String Vencimiento, @WebParam(name = "Presentacion") String Presentacion) {
+        String datos = dao.add(Medicamento, Dosis, Precio_unitario, Cantidad_existencia, Laboratorio_farmaceutico, Vencimiento, Presentacion);
+        return datos;
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "listarcodigo")
+    public Medicamento listarcodigo(@WebParam(name = "Codigo") int Codigo) {
+        Medicamento medicamento=dao.listarCodigo(Codigo);
+        
+        return medicamento;
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "Actualizar")
+    public String Actualizar(@WebParam(name = "Codigo") int Codigo, @WebParam(name = "Medicamento") String Medicamento, @WebParam(name = "Dosis") String Dosis, @WebParam(name = "Precio_unitario") double Precio_unitario, @WebParam(name = "Cantidad_existencia") int Cantidad_existencia, @WebParam(name = "Laboratorio_farmaceutico") String Laboratorio_farmaceutico, @WebParam(name = "Vencimiento") String Vencimiento, @WebParam(name = "Presentacion") String Presentacion) {
+        String datos=dao.edit(Codigo, Medicamento, Dosis, Precio_unitario, Cantidad_existencia, Laboratorio_farmaceutico, Vencimiento, Presentacion);
+        
         return datos;
     }
 }
