@@ -22,7 +22,7 @@ public class CRUDMedicamentos implements CRUD{
     Conexion conex;
     int res;
     String msj;
-    
+    Medicamento medicamento = new Medicamento();
     
     
     @Override
@@ -61,7 +61,7 @@ public class CRUDMedicamentos implements CRUD{
     @Override
     public Medicamento listarCodigo(int Codigo) {
         String sql="select *from Medicamentos where Codigo="+Codigo;
-        Medicamento medicamento = new Medicamento();
+       
         try {
             conex = new Conexion("progra","programacion3");
             con = conex.getConnection();
@@ -140,14 +140,22 @@ public class CRUDMedicamentos implements CRUD{
     }
 
     @Override
-    public Medicamento delete(int codigo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Medicamento delete(int Codigo) {
+        String sql ="delete from Medicamentos where Codigo="+Codigo;
+        try{
+            conex = new Conexion("progra","programacion3");
+            con = conex.getConnection();
+            ps=con.prepareStatement(sql);
+            ps.executeUpdate();
+        } catch (SQLException e){
+    }
+      return medicamento;  
     }
 
     @Override
     public Medicamento listarLaboratorios(String Laboratorio_farmaceutico) {
       
-        String sql="SELECT * FROM Medicamentos WHERE Laboratorio_farmaceutico LIKE 'farm%';";
+        String sql="SELECT * FROM Medicamentos WHERE Laboratorio_farmaceutico LIKE '"+ Laboratorio_farmaceutico+ "%';";
         Medicamento medicamento = new Medicamento();
         try {
             conex = new Conexion("progra","programacion3");

@@ -10,10 +10,7 @@ import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 
-/**
- *
- * @author Marvin Lemen
- */
+
 @WebService(serviceName = "Servicios")
 public class Servicios {
 
@@ -57,7 +54,14 @@ public class Servicios {
      */
     @WebMethod(operationName = "listarLaboratorio")
     public Medicamento listarLaboratorio(@WebParam(name = "LaboratorioFarmaceutico") String LaboratorioFarmaceutico) {
-        //TODO write your implementation code here:
-        return null;
+        Medicamento medicamento=dao.listarLaboratorios(LaboratorioFarmaceutico);
+        return medicamento;
+    }
+
+    
+    @WebMethod(operationName = "Eliminar")
+    public Medicamento Eliminar(@WebParam(name = "Codigo") int Codigo) {
+        Medicamento u=dao.delete(Codigo);
+        return u;
     }
 }
