@@ -68,6 +68,7 @@ public class CRUDMedicamentos implements CRUD{
             ps=con.prepareStatement(sql);
             rs=ps.executeQuery();
             while(rs.next()){
+                
                 medicamento.setCodigo(rs.getInt(1));
                 medicamento.setMedicamento(rs.getString(2));
                 medicamento.setDosis(rs.getString(3));
