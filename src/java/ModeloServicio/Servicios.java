@@ -51,4 +51,13 @@ public class Servicios {
         
         return datos;
     }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "listarLaboratorio")
+    public Medicamento listarLaboratorio(@WebParam(name = "LaboratorioFarmaceutico") String LaboratorioFarmaceutico) {
+        //TODO write your implementation code here:
+        return null;
+    }
 }

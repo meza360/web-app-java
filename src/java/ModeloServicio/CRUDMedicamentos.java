@@ -146,7 +146,32 @@ public class CRUDMedicamentos implements CRUD{
 
     @Override
     public Medicamento listarLaboratorios(String Laboratorio_farmaceutico) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      
+        String sql="SELECT * FROM Medicamentos WHERE Laboratorio_farmaceutico LIKE 'farm%';";
+        Medicamento medicamento = new Medicamento();
+        try {
+            conex = new Conexion("progra","programacion3");
+            con = conex.getConnection();
+            ps=con.prepareStatement(sql);
+            rs=ps.executeQuery();
+            while(rs.next()){
+                
+                medicamento.setCodigo(rs.getInt(1));
+                medicamento.setMedicamento(rs.getString(2));
+                medicamento.setDosis(rs.getString(3));
+                medicamento.setPrecio_unitario(rs.getDouble(4));
+                medicamento.setCantidad_existencia(rs.getInt(5));
+                medicamento.setLaboratorio_farmaceutico(rs.getString(6));
+                medicamento.setVencimiento(rs.getString(7));
+                medicamento.setPresentacion(rs.getString(8));
+                
+                
+                
+            }
+            
+        }catch (SQLException error){   
+        }
+        return medicamento;
     }
     
     
