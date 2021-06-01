@@ -1,8 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ *
+ * @author Marvin Alonso Lemen Sanchez 090-17-99
+ * @author GIOVANI DAVID MEZA POGGIO 5990-18-14676
+ * @author Wendy Pricila Cifuentes Lutin 5990-18-4413
+ * @author Byron Rosbin Antonio Orozco 9941-19-23685
+ * @author Karina Aracely Sanchez Ixcot 9941-19-264
  */
+
 package ModeloServicio;
 
 import java.util.List;
@@ -53,8 +57,9 @@ public class Servicios {
      * Web service operation
      */
     @WebMethod(operationName = "listarLaboratorio")
-    public Medicamento listarLaboratorio(@WebParam(name = "LaboratorioFarmaceutico") String LaboratorioFarmaceutico) {
-        Medicamento medicamento=dao.listarLaboratorios(LaboratorioFarmaceutico);
+    public List<Medicamento> listarLaboratorio(@WebParam(name = "LaboratorioFarmaceutico") String LaboratorioFarmaceutico) {
+        
+        List<Medicamento> medicamento = dao.listarLaboratorios(LaboratorioFarmaceutico);
         return medicamento;
     }
 
@@ -63,5 +68,23 @@ public class Servicios {
     public Medicamento Eliminar(@WebParam(name = "Codigo") int Codigo) {
         Medicamento u=dao.delete(Codigo);
         return u;
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "listarNombre")
+    public List<Medicamento> listarNombre(@WebParam(name = "nombreMedicamento") String nombreMedicamento) {
+        List<Medicamento> listaNombres = dao.listarNombre(nombreMedicamento);
+        return listaNombres;
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "insertarArchivo")
+    public Integer insertarArchivo(@WebParam(name = "rutaArchivo") String rutaArchivo) {
+        //TODO write your implementation code here:
+        return null;
     }
 }

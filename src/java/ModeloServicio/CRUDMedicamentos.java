@@ -13,8 +13,14 @@ import java.util.List;
 
 /**
  *
- * @author Marvin Lemen
+ * @author Marvin Alonso Lemen Sanchez 090-17-99
+ * @author GIOVANI DAVID MEZA POGGIO 5990-18-14676
+ * @author Wendy Pricila Cifuentes Lutin 5990-18-4413
+ * @author Byron Rosbin Antonio Orozco 9941-19-23685
+ * @author Karina Aracely Sanchez Ixcot 9941-19-264
  */
+
+
 public class CRUDMedicamentos implements CRUD{
     PreparedStatement ps;
     ResultSet rs;
@@ -28,7 +34,7 @@ public class CRUDMedicamentos implements CRUD{
     @Override
     public List listar() {
         
-        List <Medicamento>  datos=new ArrayList<>();
+        List <Medicamento> datos = new ArrayList<>();
         String sql= "SELECT * FROM Medicamentos";
         try {
             conex = new Conexion("progra","programacion3");
@@ -45,8 +51,7 @@ public class CRUDMedicamentos implements CRUD{
                 u.setCantidad_existencia(rs.getInt(5));
                 u.setLaboratorio_farmaceutico(rs.getString(6));
                 u.setVencimiento(rs.getString(7));
-                u.setPresentacion(rs.getString(8));
-                
+                u.setPresentacion(rs.getString(8));              
                 
                 datos.add(u);
             }
@@ -77,12 +82,12 @@ public class CRUDMedicamentos implements CRUD{
                 medicamento.setLaboratorio_farmaceutico(rs.getString(6));
                 medicamento.setVencimiento(rs.getString(7));
                 medicamento.setPresentacion(rs.getString(8));
-                
-                
-                
+                   
             }
             
-        }catch (SQLException error){   
+        }catch (SQLException error){ 
+            System.out.println("Error en la obtencion de datos: " + error);
+            error.printStackTrace();
         }
         return medicamento;
     }
@@ -108,7 +113,9 @@ public class CRUDMedicamentos implements CRUD{
                 msj="Error";
             }
             
-        }catch (SQLException e){
+        }catch (SQLException error){
+            System.out.println("Error en la obtencion de datos: " + error);
+            error.printStackTrace();
         }
         return msj;
     }
@@ -134,7 +141,9 @@ public class CRUDMedicamentos implements CRUD{
                 msj="Error";
             }
             
-        }catch (SQLException e){
+        }catch (SQLException error){
+            System.out.println("Error en la obtencion de datos: " + error);
+            error.printStackTrace();
         }
         return msj;
     }
@@ -153,33 +162,67 @@ public class CRUDMedicamentos implements CRUD{
     }
 
     @Override
-    public Medicamento listarLaboratorios(String Laboratorio_farmaceutico) {
-      
+    public List listarLaboratorios(String Laboratorio_farmaceutico) {
+        List<Medicamento> listaMedicamentos = new ArrayList<>();
         String sql="SELECT * FROM Medicamentos WHERE Laboratorio_farmaceutico LIKE '"+ Laboratorio_farmaceutico+ "%';";
-        Medicamento medicamento = new Medicamento();
+        
         try {
             conex = new Conexion("progra","programacion3");
             con = conex.getConnection();
             ps=con.prepareStatement(sql);
             rs=ps.executeQuery();
             while(rs.next()){
+                Medicamento u = new Medicamento();
                 
-                medicamento.setCodigo(rs.getInt(1));
-                medicamento.setMedicamento(rs.getString(2));
-                medicamento.setDosis(rs.getString(3));
-                medicamento.setPrecio_unitario(rs.getDouble(4));
-                medicamento.setCantidad_existencia(rs.getInt(5));
-                medicamento.setLaboratorio_farmaceutico(rs.getString(6));
-                medicamento.setVencimiento(rs.getString(7));
-                medicamento.setPresentacion(rs.getString(8));
+                u.setCodigo(rs.getInt(1));
+                u.setMedicamento(rs.getString(2));
+                u.setDosis(rs.getString(3));
+                u.setPrecio_unitario(rs.getDouble(4));
+                u.setCantidad_existencia(rs.getInt(5));
+                u.setLaboratorio_farmaceutico(rs.getString(6));
+                u.setVencimiento(rs.getString(7));
+                u.setPresentacion(rs.getString(8));
                 
-                
-                
+                listaMedicamentos.add(u);    
             }
             
-        }catch (SQLException error){   
+        }catch (SQLException error){  
+            System.out.println("Error en la obtencion de datos: " + error);
+            error.printStackTrace();
         }
-        return medicamento;
+        return listaMedicamentos;
+    }
+
+    @Override
+    public List listarNombre(String nombre_medicamento) {
+        List<Medicamento> listaMedicamentos = new ArrayList<>();
+        String sql="SELECT * FROM Medicamentos WHERE Medicamento LIKE '"+ nombre_medicamento + "%';";
+        
+        try {
+            conex = new Conexion("progra","programacion3");
+            con = conex.getConnection();
+            ps=con.prepareStatement(sql);
+            rs=ps.executeQuery();
+            while(rs.next()){
+                Medicamento u = new Medicamento();
+                
+                u.setCodigo(rs.getInt(1));
+                u.setMedicamento(rs.getString(2));
+                u.setDosis(rs.getString(3));
+                u.setPrecio_unitario(rs.getDouble(4));
+                u.setCantidad_existencia(rs.getInt(5));
+                u.setLaboratorio_farmaceutico(rs.getString(6));
+                u.setVencimiento(rs.getString(7));
+                u.setPresentacion(rs.getString(8));
+                
+                listaMedicamentos.add(u);  
+            }
+            
+        }catch (SQLException error){  
+            System.out.println("Error en la obtencion de datos: " + error);
+            error.printStackTrace();
+        }
+        return listaMedicamentos;
     }
     
     

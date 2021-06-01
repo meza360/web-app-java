@@ -1,3 +1,12 @@
+/**
+ *
+ * @author Marvin Alonso Lemen Sanchez 090-17-99
+ * @author GIOVANI DAVID MEZA POGGIO 5990-18-14676
+ * @author Wendy Pricila Cifuentes Lutin 5990-18-4413
+ * @author Byron Rosbin Antonio Orozco 9941-19-23685
+ * @author Karina Aracely Sanchez Ixcot 9941-19-264
+ */
+
 
 package ModeloServicio;
 
