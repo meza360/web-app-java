@@ -29,4 +29,5 @@ package ModeloServicio;
 
 public interface CRUDBD {
     public int insertarArchivo(String rutaArchivo);
+    public int ventaActualizar(int Codigo, int Cantidad);
 }

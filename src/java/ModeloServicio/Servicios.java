@@ -115,4 +115,24 @@ public class Servicios {
         }
         return opStatus2;
     }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "ventaActualizar")
+    public Integer ventaActualizar(@WebParam(name = "Codigo") int Codigo, @WebParam(name = "Cantidad") int Cantidad) {
+        int opStatus = 0;
+        
+        try {
+                enlaceCrudbbdd.ventaActualizar(Codigo, Cantidad);
+                System.out.println("La venta en el web service se realizo correctamente");
+                opStatus = 1; 
+            
+        } catch (Exception error) {
+            System.out.println("Error en la venta de productos: " + error);
+            opStatus = 0;
+            error.printStackTrace();
+        }
+        return opStatus;
+    }
 }

@@ -67,7 +67,6 @@ public class CRUDbbdd implements CRUDBD{
             conex = new Conexion("progra","programacion3");
             con = conex.getConnection();
             ps=con.prepareStatement(query);
-            ps.executeQuery();
             ps.execute();
             if (ps != null) {
                 System.out.println("El resultado de la insercion de datos ha sido exitoso");
@@ -78,6 +77,32 @@ public class CRUDbbdd implements CRUDBD{
         } catch (Exception error) {
             opStatus = 0;
             System.out.println("Error en la insercion del archivo! " + error);
+            error.printStackTrace();
+        }
+        
+        return opStatus;
+    }
+
+    @Override
+    public int ventaActualizar(int Codigo, int Cantidad) {
+        
+        int opStatus = 0;
+        String query = "EXEC sp_venta_actualizacion " + Codigo + "," + Cantidad + ";";
+        
+        try {
+            conex = new Conexion("progra","programacion3");
+            con = conex.getConnection();
+            ps=con.prepareStatement(query);
+            ps.execute();
+            if (ps != null) {
+                System.out.println("El resultado de la VENTA de datos ha sido exitoso");
+                opStatus = 1;
+                
+            }
+            
+        } catch (Exception error) {
+            opStatus = 0;
+            System.out.println("Error en la Venta de productos! " + error);
             error.printStackTrace();
         }
         
